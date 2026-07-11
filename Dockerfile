@@ -13,9 +13,9 @@ RUN npm run build
 FROM php:8.3-apache AS app
 
 RUN apt-get update && apt-get install -y \
-        git unzip libzip-dev libpng-dev libonig-dev libxml2-dev libjpeg-dev libfreetype6-dev \
+        git unzip libzip-dev libpng-dev libonig-dev libxml2-dev libjpeg-dev libfreetype6-dev libicu-dev \
     && docker-php-ext-configure gd --with-jpeg --with-freetype \
-    && docker-php-ext-install pdo_mysql mbstring zip exif pcntl gd \
+    && docker-php-ext-install pdo_mysql mbstring zip exif pcntl gd intl \
     && a2enmod rewrite \
     && rm -rf /var/lib/apt/lists/*
 
