@@ -1,0 +1,42 @@
+/* Thème custom Créa'Max pour le panel Filament — rapproche le style de la maquette statique */
+
+.fi-sidebar-header .fi-logo,
+.fi-simple-layout .fi-logo,
+.fi-header-heading,
+.fi-section-header-heading,
+.fi-modal-heading,
+.fi-fo-section-header-heading,
+.fi-in-section-header-heading {
+    font-family: 'Playfair Display', ui-serif, serif !important;
+    font-weight: 700 !important;
+}
+
+.fi-sidebar-header .fi-logo {
+    font-size: 1.375rem !important;
+    color: rgb(197 216 109) !important;
+}
+
+/* Cartes statistiques : icône dans un cercle plein, comme la maquette */
+.fi-wi-stats-overview-stat {
+    border-radius: 20px !important;
+}
+
+.fi-wi-stats-overview-stat-icon {
+    border-radius: 9999px !important;
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Coins plus arrondis sur les cartes/sections pour matcher --radius-lg de la maquette */
+.fi-section,
+.fi-ta-ctn,
+.fi-modal-window {
+    border-radius: 20px !important;
+}
+
+.fi-badge {
+    border-radius: 9999px !important;
+}

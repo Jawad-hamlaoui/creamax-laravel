@@ -10,11 +10,13 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets\AccountWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Foundation\Vite;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
@@ -32,7 +34,17 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::hex('#234625'),
                 'success' => Color::hex('#3a7a3c'),
+                'warning' => Color::hex('#c58b1f'),
+                'info' => Color::hex('#3b6fc5'),
+                'purple' => Color::hex('#7c5cc5'),
             ])
+            ->renderHook(
+                PanelsRenderHook::HEAD_END,
+                fn () => '<link rel="preconnect" href="https://fonts.googleapis.com">'
+                    .'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+                    .'<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">'
+                    .app(Vite::class)(['resources/css/filament-admin.css']),
+            )
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
