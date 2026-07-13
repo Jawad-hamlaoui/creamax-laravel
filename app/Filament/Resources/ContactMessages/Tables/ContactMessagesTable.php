@@ -3,9 +3,14 @@
 namespace App\Filament\Resources\ContactMessages\Tables;
 
 use App\Enums\ContactMessageStatus;
+use App\Enums\RendezVousStatus;
+use App\Models\ContactMessage;
+use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -48,6 +53,28 @@ class ContactMessagesTable
             ])
             ->recordActions([
                 ViewAction::make(),
+                Action::make('valider')
+                    ->label('Valider')
+                    ->icon('heroicon-o-calendar-days')
+                    ->color('success')
+                    ->visible(fn (ContactMessage $record) => $record->status === ContactMessageStatus::Nouveau)
+                    ->schema([
+                        DateTimePicker::make('date_heure')
+                            ->label('Date et heure du rendez-vous')
+                            ->native(false)
+                            ->required(),
+                        Textarea::make('notes')
+                            ->label('Notes'),
+                    ])
+                    ->action(function (ContactMessage $record, array $data) {
+                        $record->rendezVous()->create([
+                            'client_id' => $record->client_id,
+                            'date_heure' => $data['date_heure'],
+                            'status' => RendezVousStatus::Valide,
+                            'notes' => $data['notes'] ?? null,
+                        ]);
+                        $record->update(['status' => ContactMessageStatus::Traite]);
+                    }),
                 EditAction::make()
                     ->label('Statut'),
                 DeleteAction::make(),

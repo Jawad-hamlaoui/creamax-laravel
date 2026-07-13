@@ -31,6 +31,11 @@ class Client extends Model
         return $this->hasMany(ContactMessage::class);
     }
 
+    public function rendezVous(): HasMany
+    {
+        return $this->hasMany(RendezVous::class);
+    }
+
     public function getNomCompletAttribute(): string
     {
         return trim("{$this->prenom} {$this->nom}");

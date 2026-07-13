@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\ContactMessageStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ContactMessage extends Model
 {
@@ -31,5 +32,10 @@ class ContactMessage extends Model
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);
+    }
+
+    public function rendezVous(): HasMany
+    {
+        return $this->hasMany(RendezVous::class);
     }
 }
