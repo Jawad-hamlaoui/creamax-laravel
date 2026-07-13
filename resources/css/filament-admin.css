@@ -1,42 +1,298 @@
-/* Thème custom Créa'Max pour le panel Filament — rapproche le style de la maquette statique */
+/* ══════════════════════════════════════════════════════════
+   Thème custom Créa'Max pour le panel Filament
+   Rapproche le rendu du panel de la maquette statique
+   (voir clients.html / devis.html / prestations.html / index.html
+   et leur css/style.css d'origine)
+══════════════════════════════════════════════════════════ */
+
+:root {
+    --cm-vert: #234625;
+    --cm-vert-clair: #3a7a3c;
+    --cm-accent: #c5d86d;
+    --cm-creme: #fcfbf7;
+    --cm-creme2: #f4f2eb;
+    --cm-texte: #1a1a14;
+    --cm-texte-doux: #4a4a40;
+    --cm-texte-fin: #7a7a6a;
+    --cm-bord: #e4e2d8;
+    --cm-actif-bg: #e6efe6;
+}
+
+/* ── Base ─────────────────────────────────────────────── */
+.fi-body {
+    background-color: var(--cm-creme) !important;
+}
 
 .fi-sidebar-header .fi-logo,
 .fi-simple-layout .fi-logo,
+.fi-topbar-start .fi-logo,
 .fi-header-heading,
 .fi-section-header-heading,
 .fi-modal-heading,
 .fi-fo-section-header-heading,
-.fi-in-section-header-heading {
+.fi-in-section-header-heading,
+.fi-ta-header-heading {
     font-family: 'Playfair Display', ui-serif, serif !important;
     font-weight: 700 !important;
 }
 
-.fi-sidebar-header .fi-logo {
-    font-size: 1.375rem !important;
-    color: rgb(197 216 109) !important;
+/* ══════════════════════════════════════════════════════════
+   SIDEBAR
+══════════════════════════════════════════════════════════ */
+.fi-sidebar {
+    background-color: #ffffff !important;
+    box-shadow: none !important;
 }
 
-/* Cartes statistiques : icône dans un cercle plein, comme la maquette */
+.fi-sidebar-header {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid var(--cm-bord);
+}
+
+.fi-sidebar-header .fi-logo {
+    font-size: 1.125rem !important;
+    color: var(--cm-vert) !important;
+    line-height: 1.2 !important;
+}
+
+.fi-sidebar-header-logo-ctn {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+}
+
+.fi-sidebar-header-logo-ctn::before {
+    content: '';
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background-color: var(--cm-vert);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23c5d86d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2C12 2 4 8 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8c0-6-8-12-8-12z'/%3E%3Cpath d='M12 22V12'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.fi-sidebar-nav {
+    padding: 14px 12px !important;
+    gap: 1.25rem !important;
+}
+
+.fi-sidebar-group-label {
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.1em !important;
+    color: var(--cm-texte-fin) !important;
+}
+
+.fi-sidebar-item-btn {
+    border-radius: 10px !important;
+    padding: 10px 12px !important;
+}
+
+.fi-sidebar-item-label {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: var(--cm-texte-doux) !important;
+}
+
+.fi-sidebar-item-has-url > .fi-sidebar-item-btn:hover {
+    background-color: var(--cm-creme2) !important;
+}
+
+.fi-sidebar-item-has-url > .fi-sidebar-item-btn:hover .fi-sidebar-item-label {
+    color: var(--cm-vert) !important;
+}
+
+.fi-sidebar-item.fi-active > .fi-sidebar-item-btn {
+    background-color: var(--cm-actif-bg) !important;
+}
+
+.fi-sidebar-item.fi-active > .fi-sidebar-item-btn > .fi-icon {
+    color: var(--cm-vert) !important;
+}
+
+.fi-sidebar-item.fi-active > .fi-sidebar-item-btn > .fi-sidebar-item-label {
+    color: var(--cm-vert) !important;
+    font-weight: 600 !important;
+}
+
+.fi-sidebar-footer {
+    border-top: 1px solid var(--cm-bord);
+    margin: 0 !important;
+    padding: 14px 18px !important;
+}
+
+.fi-sidebar .fi-user-menu-trigger {
+    justify-content: flex-start !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   TOPBAR (mobile / top navigation)
+══════════════════════════════════════════════════════════ */
+.fi-topbar {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid var(--cm-bord);
+    box-shadow: none !important;
+}
+
+.fi-topbar-start .fi-logo {
+    color: var(--cm-vert) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   PAGE HEADER
+══════════════════════════════════════════════════════════ */
+.fi-header-heading {
+    color: var(--cm-vert) !important;
+    font-size: 1.75rem !important;
+}
+
+.fi-header-subheading {
+    color: var(--cm-texte-fin) !important;
+    font-size: 14px !important;
+    margin-top: 3px !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   STATS CARDS
+══════════════════════════════════════════════════════════ */
 .fi-wi-stats-overview-stat {
     border-radius: 20px !important;
+    border: 1px solid var(--cm-bord);
+    box-shadow: none !important;
 }
 
-.fi-wi-stats-overview-stat-icon {
-    border-radius: 9999px !important;
-    width: 2.75rem !important;
-    height: 2.75rem !important;
-    display: flex !important;
+.fi-wi-stats-overview-stat-value {
+    color: var(--cm-texte) !important;
+    font-family: 'Playfair Display', ui-serif, serif !important;
+}
+
+.fi-wi-stats-overview-stat-label {
+    color: var(--cm-texte-fin) !important;
+}
+
+.fi-wi-stats-overview-stat-label-ctn {
     align-items: center !important;
-    justify-content: center !important;
 }
 
-/* Coins plus arrondis sur les cartes/sections pour matcher --radius-lg de la maquette */
-.fi-section,
-.fi-ta-ctn,
-.fi-modal-window {
+.fi-wi-stats-overview-stat-label-ctn > .fi-icon {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    padding: 0.55rem;
+    box-sizing: border-box;
+    border-radius: 9999px !important;
+}
+
+.fi-wi-stats-overview-stat:nth-child(1) .fi-wi-stats-overview-stat-label-ctn > .fi-icon {
+    background-color: var(--cm-actif-bg);
+    color: var(--cm-vert) !important;
+}
+
+.fi-wi-stats-overview-stat:nth-child(2) .fi-wi-stats-overview-stat-label-ctn > .fi-icon {
+    background-color: #eff6ff;
+    color: #2563eb !important;
+}
+
+.fi-wi-stats-overview-stat:nth-child(3) .fi-wi-stats-overview-stat-label-ctn > .fi-icon {
+    background-color: #fffbeb;
+    color: #d97706 !important;
+}
+
+.fi-wi-stats-overview-stat:nth-child(4) .fi-wi-stats-overview-stat-label-ctn > .fi-icon {
+    background-color: #f5f3ff;
+    color: #7c3aed !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   CARTES / SECTIONS
+══════════════════════════════════════════════════════════ */
+.fi-section:not(.fi-section-not-contained):not(.fi-aside) {
     border-radius: 20px !important;
+    box-shadow: none !important;
+    border: 1px solid var(--cm-bord);
 }
 
+.fi-section-header-heading {
+    color: var(--cm-vert) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   TABLEAUX
+══════════════════════════════════════════════════════════ */
+.fi-ta-ctn {
+    border-radius: 20px !important;
+    box-shadow: none !important;
+    border: 1px solid var(--cm-bord);
+}
+
+.fi-ta-table > thead > tr {
+    background-color: var(--cm-creme) !important;
+}
+
+.fi-ta-header-cell {
+    color: var(--cm-texte-fin) !important;
+    font-size: 11px !important;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.fi-ta-row:hover {
+    background-color: var(--cm-creme) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   BADGES
+══════════════════════════════════════════════════════════ */
 .fi-badge {
     border-radius: 9999px !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   BOUTONS
+══════════════════════════════════════════════════════════ */
+.fi-btn:not(.fi-icon-btn) {
+    border-radius: 9999px !important;
+    font-weight: 600 !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   CHAMPS DE FORMULAIRE
+══════════════════════════════════════════════════════════ */
+.fi-input-wrp {
+    background-color: var(--cm-creme) !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+}
+
+.fi-input-wrp:has(input:focus),
+.fi-input-wrp:has(select:focus),
+.fi-input-wrp:has(textarea:focus) {
+    background-color: #ffffff !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   MODALES
+══════════════════════════════════════════════════════════ */
+.fi-modal-window {
+    border-radius: 24px !important;
+}
+
+.fi-modal-heading {
+    color: var(--cm-vert) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   PAGE DE CONNEXION
+══════════════════════════════════════════════════════════ */
+.fi-simple-main {
+    border-radius: 20px !important;
+    box-shadow: none !important;
+    border: 1px solid var(--cm-bord);
+}
+
+.fi-simple-layout .fi-logo {
+    font-size: 1.5rem !important;
+    color: var(--cm-vert) !important;
 }

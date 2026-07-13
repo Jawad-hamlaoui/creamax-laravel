@@ -26,7 +26,7 @@ class StatsOverviewWidget extends BaseStatsOverviewWidget
                 ->color('warning'),
             Stat::make('CA accepté', number_format((float) Devis::where('status', DevisStatus::Accepte)->sum('total'), 2, ',', ' ').' €')
                 ->icon('heroicon-o-banknotes')
-                ->color('success'),
+                ->color('purple'),
         ];
     }
 }
