@@ -114,11 +114,11 @@
   </div>
 </section>
 
-<section id="avis" class="section-creme">
+<section id="avis" class="section-dark">
   <div class="portfolio-header">
-    <div class="reveal"><span class="eyebrow">Avis clients</span></div>
-    <h2 class="section-title reveal reveal-delay-1">Ce que <em>disent nos clients</em></h2>
-    <p class="section-sub reveal reveal-delay-2" style="margin:16px auto 0;text-align:center;">Les avis Google de nos clients en Drôme et Ardèche.</p>
+    <div class="reveal"><span class="eyebrow eyebrow-accent">Avis clients</span></div>
+    <h2 class="section-title section-title-light reveal reveal-delay-1">Ce que <em>disent nos clients</em></h2>
+    <p class="section-sub section-sub-light reveal reveal-delay-2" style="margin:16px auto 0;text-align:center;">Les avis Google de nos clients en Drôme et Ardèche.</p>
   </div>
   <div class="reveal reveal-delay-3">
     <!-- Elfsight Google Reviews | Untitled Google Reviews -->
