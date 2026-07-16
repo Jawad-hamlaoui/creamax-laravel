@@ -2,6 +2,10 @@
     title="Créa'Max — Paysagiste Drôme & Ardèche | Création et entretien de jardin"
     description="Créa'Max Paysage, votre paysagiste en Drôme (26) et Ardèche (07). Création de jardins, aménagement paysager et entretien. Devis gratuit sous 72h, visite offerte."
 >
+@php
+    $settings = \App\Models\Setting::current();
+    $realisations = \App\Models\Realisation::where('actif', true)->orderBy('ordre')->get();
+@endphp
 @include('partials.public.nav')
 
 <section id="hero">
@@ -33,9 +37,13 @@
       <div class="badge-top-lbl">Délai devis</div>
     </div>
     <div class="hero-img-main">
-      <div class="hero-img-main-inner">
-        <svg viewBox="0 0 80 80" fill="white"><path d="M40 5C25 5 12 18 12 33c0 20 28 42 28 42s28-22 28-42C68 18 55 5 40 5zm0 24a8 8 0 110-16 8 8 0 010 16z"/></svg>
-      </div>
+      @if ($settings->hero_image_path)
+        <img src="{{ asset('storage/' . $settings->hero_image_path) }}" alt="Créa'Max Paysage" style="width:100%;height:100%;object-fit:cover;">
+      @else
+        <div class="hero-img-main-inner">
+          <svg viewBox="0 0 80 80" fill="white"><path d="M40 5C25 5 12 18 12 33c0 20 28 42 28 42s28-22 28-42C68 18 55 5 40 5zm0 24a8 8 0 110-16 8 8 0 010 16z"/></svg>
+        </div>
+      @endif
     </div>
     <div class="hero-float-card">
       <div class="float-icon">
@@ -52,16 +60,24 @@
 <section id="apropos">
   <div class="apropos-imgs reveal">
     <div class="apropos-img1">
-      <div class="img-placeholder">
-        <svg viewBox="0 0 24 24" fill="white"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        Photo à venir
-      </div>
+      @if ($settings->apropos_image_1_path)
+        <img src="{{ asset('storage/' . $settings->apropos_image_1_path) }}" alt="Créa'Max Paysage" style="width:100%;height:100%;object-fit:cover;">
+      @else
+        <div class="img-placeholder">
+          <svg viewBox="0 0 24 24" fill="white"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          Photo à venir
+        </div>
+      @endif
     </div>
     <div class="apropos-img2">
-      <div class="img-placeholder">
-        <svg viewBox="0 0 24 24" fill="white"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        Photo à venir
-      </div>
+      @if ($settings->apropos_image_2_path)
+        <img src="{{ asset('storage/' . $settings->apropos_image_2_path) }}" alt="Créa'Max Paysage" style="width:100%;height:100%;object-fit:cover;">
+      @else
+        <div class="img-placeholder">
+          <svg viewBox="0 0 24 24" fill="white"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          Photo à venir
+        </div>
+      @endif
     </div>
   </div>
 
@@ -165,33 +181,42 @@
     <h2 class="section-title reveal reveal-delay-1">Des jardins qui<br><em>parlent d'eux-mêmes</em></h2>
     <p class="section-sub reveal reveal-delay-2" style="margin: 16px auto 0; text-align:center;">Chaque projet est unique. Voici quelques réalisations récentes en Drôme et Ardèche.</p>
   </div>
-  {{-- Portfolio : photos à fournir par le client, emplacements prêts à remplir --}}
-  <div class="portfolio-grid">
-    @foreach ([
-        ['featured' => true, 'bg' => 'linear-gradient(135deg,#a8c87a,#4a8a22)'],
-        ['featured' => false, 'bg' => 'linear-gradient(135deg,#8ab560,#3a6a20)'],
-        ['featured' => false, 'bg' => 'linear-gradient(135deg,#c5d890,#6a9a3a)'],
-    ] as $i => $projet)
-      <div class="projet-card {{ $projet['featured'] ? 'featured' : '' }} reveal reveal-delay-{{ $i }}">
-        <div class="projet-img">
-          <div class="proj-bg" style="background:{{ $projet['bg'] }};">
-            <div class="img-placeholder" style="flex-direction:column;gap:8px;">
-              <svg viewBox="0 0 24 24" fill="white" style="width:36px;height:36px;opacity:0.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-              <span style="font-size:12px;opacity:0.7">Photo à venir</span>
-            </div>
+  @if ($realisations->isEmpty())
+    <p class="section-sub" style="text-align:center;">Réalisations à venir.</p>
+  @else
+    @php $bgs = ['linear-gradient(135deg,#a8c87a,#4a8a22)', 'linear-gradient(135deg,#8ab560,#3a6a20)', 'linear-gradient(135deg,#c5d890,#6a9a3a)']; @endphp
+    <div class="portfolio-grid">
+      @foreach ($realisations as $i => $projet)
+        <div class="projet-card {{ $projet->featured ? 'featured' : '' }} reveal reveal-delay-{{ $i % 4 }}">
+          <div class="projet-img">
+            @if ($projet->image_path)
+              <div class="proj-bg">
+                <img src="{{ asset('storage/' . $projet->image_path) }}" alt="{{ $projet->titre }}" style="width:100%;height:100%;object-fit:cover;">
+              </div>
+            @else
+              <div class="proj-bg" style="background:{{ $bgs[$i % count($bgs)] }};">
+                <div class="img-placeholder" style="flex-direction:column;gap:8px;">
+                  <svg viewBox="0 0 24 24" fill="white" style="width:36px;height:36px;opacity:0.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  <span style="font-size:12px;opacity:0.7">Photo à venir</span>
+                </div>
+              </div>
+            @endif
+          </div>
+          <div class="projet-meta">
+            @if ($projet->lieu)
+              <div class="meta-tag"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>{{ $projet->lieu }}</div>
+            @endif
+          </div>
+          <div class="projet-body">
+            <div class="projet-name">{{ $projet->titre }}</div>
+            @if ($projet->description)
+              <p class="projet-desc">{{ $projet->description }}</p>
+            @endif
           </div>
         </div>
-        <div class="projet-meta">
-          <div class="meta-tag"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>À venir</div>
-          <div class="meta-tag"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Drôme / Ardèche</div>
-        </div>
-        <div class="projet-body">
-          <div class="projet-name">Réalisation à venir</div>
-          <p class="projet-desc">Une photo et une description de ce projet seront ajoutées prochainement.</p>
-        </div>
-      </div>
-    @endforeach
-  </div>
+      @endforeach
+    </div>
+  @endif
   <div style="text-align:center; margin-top:48px;">
     <a href="#devis" class="btn-accent reveal">Démarrer mon projet</a>
   </div>

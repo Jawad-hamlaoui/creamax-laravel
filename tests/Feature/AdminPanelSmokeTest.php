@@ -6,6 +6,8 @@ use App\Models\Client;
 use App\Models\ContactMessage;
 use App\Models\Devis;
 use App\Models\Prestation;
+use App\Models\Realisation;
+use App\Models\RendezVous;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
@@ -28,6 +30,12 @@ class AdminPanelSmokeTest extends TestCase
             'prenom' => 'Smoke', 'nom' => 'Test', 'telephone' => '0600000000',
             'email' => 'smoke@test.fr', 'message' => 'Test message',
         ]);
+        $realisation = Realisation::first() ?? Realisation::create([
+            'titre' => 'Smoke', 'lieu' => 'Test',
+        ]);
+        $rendezVous = RendezVous::first() ?? RendezVous::create([
+            'client_id' => $client->id,
+        ]);
 
         $urls = [
             '/admin' => 200,
@@ -43,6 +51,14 @@ class AdminPanelSmokeTest extends TestCase
             '/admin/contact-messages' => 200,
             '/admin/contact-messages/'.$contactMessage->id => 200,
             '/admin/contact-messages/'.$contactMessage->id.'/edit' => 200,
+            '/admin/realisations' => 200,
+            '/admin/realisations/create' => 200,
+            '/admin/realisations/'.$realisation->id.'/edit' => 200,
+            '/admin/rendez-vous' => 200,
+            '/admin/rendez-vous/create' => 200,
+            '/admin/rendez-vous/'.$rendezVous->id => 200,
+            '/admin/rendez-vous/'.$rendezVous->id.'/edit' => 200,
+            '/admin/images-du-site' => 200,
         ];
 
         if ($devis) {
