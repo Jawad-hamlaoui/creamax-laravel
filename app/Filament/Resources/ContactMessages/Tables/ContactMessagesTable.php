@@ -4,6 +4,7 @@ namespace App\Filament\Resources\ContactMessages\Tables;
 
 use App\Enums\ContactMessageStatus;
 use App\Enums\RendezVousStatus;
+use App\Models\Client;
 use App\Models\ContactMessage;
 use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
@@ -67,13 +68,27 @@ class ContactMessagesTable
                             ->label('Notes'),
                     ])
                     ->action(function (ContactMessage $record, array $data) {
+                        $client = Client::firstOrCreate(
+                            ['email' => $record->email],
+                            [
+                                'nom' => $record->nom,
+                                'prenom' => $record->prenom,
+                                'tel' => $record->telephone,
+                                'adresse' => $record->commune,
+                                'prestation' => $record->prestation,
+                            ],
+                        );
+
                         $record->rendezVous()->create([
-                            'client_id' => $record->client_id,
+                            'client_id' => $client->id,
                             'date_heure' => $data['date_heure'],
                             'status' => RendezVousStatus::Valide,
                             'notes' => $data['notes'] ?? null,
                         ]);
-                        $record->update(['status' => ContactMessageStatus::Traite]);
+                        $record->update([
+                            'status' => ContactMessageStatus::Traite,
+                            'client_id' => $client->id,
+                        ]);
                     }),
                 EditAction::make()
                     ->label('Statut'),
