@@ -12,6 +12,13 @@ if [ -n "$DB_HOST" ] && [ -n "$DB_PORT" ]; then
     done
 fi
 
+# storage/app/public peut être un volume persistant monté par la plateforme
+# de déploiement ; son propriétaire dépend alors du dossier hôte, pas de
+# l'image. On force www-data à chaque démarrage pour éviter les erreurs
+# d'upload (Unable to create a directory) si l'hôte a créé le dossier en root.
+mkdir -p storage/app/public
+chown -R www-data:www-data storage/app/public || true
+
 php artisan config:clear
 php artisan migrate --force
 
