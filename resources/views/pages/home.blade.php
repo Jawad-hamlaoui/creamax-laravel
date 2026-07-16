@@ -98,6 +98,19 @@
   </div>
 </section>
 
+<section id="avis" class="section-creme">
+  <div class="portfolio-header">
+    <div class="reveal"><span class="eyebrow">Avis clients</span></div>
+    <h2 class="section-title reveal reveal-delay-1">Ce que <em>disent nos clients</em></h2>
+    <p class="section-sub reveal reveal-delay-2" style="margin:16px auto 0;text-align:center;">Les avis Google de nos clients en Drôme et Ardèche.</p>
+  </div>
+  <div class="reveal reveal-delay-3">
+    <!-- Elfsight Google Reviews | Untitled Google Reviews -->
+    <script src="https://elfsightcdn.com/platform.js" async></script>
+    <div class="elfsight-app-50777915-d61a-4257-9bf5-26a367f86030" data-elfsight-app-lazy></div>
+  </div>
+</section>
+
 <section id="services" class="section-creme">
   <div class="services-header">
     <div>
@@ -205,12 +218,6 @@
     @endforeach
   </div>
 </section>
-
-{{--
-    Témoignages : section volontairement masquée en attente de vrais avis clients Google.
-    À réactiver uniquement avec des avis réels et vérifiables (Code de la consommation, art. L121-2 :
-    les faux avis sont interdits).
---}}
 
 <section id="zone" class="section-creme">
   <div class="zone-grid">
