@@ -18,11 +18,11 @@ class ContactMessageResource extends Resource
 {
     protected static ?string $model = ContactMessage::class;
 
-    protected static ?string $modelLabel = 'demande de devis';
+    protected static ?string $modelLabel = 'demande de rendez-vous';
 
-    protected static ?string $pluralModelLabel = 'demandes de devis';
+    protected static ?string $pluralModelLabel = 'demandes de rendez-vous';
 
-    protected static ?string $navigationLabel = 'Nouvelle demande de devis';
+    protected static ?string $navigationLabel = 'Nouvelle demande de rendez-vous';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedEnvelope;
 

@@ -3,11 +3,16 @@
 namespace App\Filament\Pages;
 
 use App\Models\RendezVous;
+use App\Models\Setting;
 use BackedEnum;
 use Carbon\CarbonImmutable;
+use Filament\Actions\Action;
+use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\URL as UrlGenerator;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
 
@@ -27,6 +32,48 @@ class Calendrier extends Page
     public function mount(): void
     {
         $this->mois ??= now()->format('Y-m');
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Action::make('lienIphone')
+                ->label('Lien iPhone')
+                ->icon('heroicon-o-link')
+                ->color('gray')
+                ->modalHeading('Lien d\'abonnement iPhone')
+                ->modalSubmitAction(false)
+                ->modalCancelActionLabel('Fermer')
+                ->schema([
+                    TextInput::make('feed_url')
+                        ->label('Lien d\'abonnement')
+                        ->helperText('Sur ton iPhone : Réglages > Calendrier > Comptes > Ajouter un compte > Autre > Ajouter un calendrier avec abonnement, puis colle ce lien. Seuls les rendez-vous validés apparaissent, et l\'iPhone les met à jour toutes les heures environ.')
+                        ->readOnly()
+                        ->copyable()
+                        ->default(fn () => $this->getFeedUrl()),
+                ]),
+            Action::make('regenerateFeed')
+                ->label('Régénérer le lien iPhone')
+                ->icon('heroicon-o-arrow-path')
+                ->color('danger')
+                ->requiresConfirmation()
+                ->modalDescription('L\'ancien lien cessera de fonctionner immédiatement. Il faudra ré-ajouter le nouveau lien sur ton iPhone.')
+                ->action(function () {
+                    Setting::current()->regenerateCalendarToken();
+
+                    Notification::make()
+                        ->title('Lien régénéré')
+                        ->success()
+                        ->send();
+                }),
+        ];
+    }
+
+    protected function getFeedUrl(): string
+    {
+        $url = UrlGenerator::route('calendrier.feed', ['token' => Setting::current()->calendarToken()]);
+
+        return preg_replace('/^https?:\/\//', 'webcal://', $url);
     }
 
     public function previousMonth(): void

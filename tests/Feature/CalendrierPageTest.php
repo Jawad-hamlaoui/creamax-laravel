@@ -6,6 +6,7 @@ use App\Enums\RendezVousStatus;
 use App\Filament\Pages\Calendrier;
 use App\Models\Client;
 use App\Models\RendezVous;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Livewire\Livewire;
@@ -37,5 +38,20 @@ class CalendrierPageTest extends TestCase
             ->assertSee($client->prenom)
             ->call('aujourdhui')
             ->assertSee($client->prenom);
+    }
+
+    public function test_iphone_link_and_regenerate_actions_are_available_on_the_calendar_page(): void
+    {
+        $this->actingAs(User::first());
+
+        $oldToken = Setting::current()->calendarToken();
+
+        Livewire::test(Calendrier::class)
+            ->assertActionExists('lienIphone')
+            ->assertActionExists('regenerateFeed')
+            ->callAction('regenerateFeed')
+            ->assertHasNoActionErrors();
+
+        $this->assertNotSame($oldToken, Setting::current()->fresh()->calendar_token);
     }
 }

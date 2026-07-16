@@ -59,7 +59,6 @@ class AdminPanelSmokeTest extends TestCase
             '/admin/rendez-vous/'.$rendezVous->id => 200,
             '/admin/rendez-vous/'.$rendezVous->id.'/edit' => 200,
             '/admin/images-du-site' => 200,
-            '/admin/calendrier-iphone' => 200,
             '/admin/calendrier' => 200,
         ];
 

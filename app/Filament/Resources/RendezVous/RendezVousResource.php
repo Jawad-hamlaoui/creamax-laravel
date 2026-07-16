@@ -25,7 +25,9 @@ class RendezVousResource extends Resource
 
     protected static ?string $pluralModelLabel = 'rendez-vous';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCalendarDays;
+    protected static ?string $navigationLabel = 'Rendez-vous validé';
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentCheck;
 
     public static function form(Schema $schema): Schema
     {
