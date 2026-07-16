@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 class Setting extends Model
 {
@@ -27,7 +28,25 @@ class Setting extends Model
             'zone_intervention' => 'Drôme (26) / Ardèche (07)',
             'taux_tva' => '20.00',
             'cgv_texte' => Setting::defaultCgvTexte(),
+            'calendar_token' => Str::random(40),
         ]));
+    }
+
+    public function calendarToken(): string
+    {
+        if (blank($this->calendar_token)) {
+            $this->regenerateCalendarToken();
+        }
+
+        return $this->calendar_token;
+    }
+
+    public function regenerateCalendarToken(): string
+    {
+        $this->calendar_token = Str::random(40);
+        $this->save();
+
+        return $this->calendar_token;
     }
 
     public static function defaultCgvTexte(): string

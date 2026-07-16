@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CalendarFeedController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\PublicController;
 use App\Models\ContactMessage;
@@ -8,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 
 Route::get('/', [PublicController::class, 'home'])->name('home');
 Route::get('/mentions-legales', [PublicController::class, 'mentionsLegales'])->name('mentions-legales');
+
+Route::get('/calendrier/{token}.ics', [CalendarFeedController::class, 'show'])->name('calendrier.feed');
 
 Route::post('/contact', [ContactMessageController::class, 'store'])
     ->name('contact.store')
