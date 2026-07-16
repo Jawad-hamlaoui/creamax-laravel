@@ -20,6 +20,8 @@ class ImagesDuSite extends Page
 
     protected static ?string $navigationLabel = 'Images du site';
 
+    protected static ?int $navigationSort = 7;
+
     protected static ?string $title = 'Images du site';
 
     public ?array $data = [];

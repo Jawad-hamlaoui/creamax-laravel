@@ -22,6 +22,8 @@ class RealisationResource extends Resource
 
     protected static ?string $pluralModelLabel = 'réalisations';
 
+    protected static ?int $navigationSort = 8;
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPhoto;
 
     public static function form(Schema $schema): Schema

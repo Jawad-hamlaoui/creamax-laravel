@@ -27,6 +27,8 @@ class RendezVousResource extends Resource
 
     protected static ?string $navigationLabel = 'Rendez-vous validé';
 
+    protected static ?int $navigationSort = 2;
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentCheck;
 
     public static function form(Schema $schema): Schema

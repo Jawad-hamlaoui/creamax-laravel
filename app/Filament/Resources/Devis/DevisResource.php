@@ -23,6 +23,8 @@ class DevisResource extends Resource
 
     protected static ?string $pluralModelLabel = 'devis';
 
+    protected static ?int $navigationSort = 3;
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
 
     public static function form(Schema $schema): Schema

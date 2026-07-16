@@ -20,6 +20,8 @@ class PrestationResource extends Resource
 
     protected static ?string $modelLabel = 'prestation';
 
+    protected static ?int $navigationSort = 6;
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedSparkles;
 
     public static function form(Schema $schema): Schema

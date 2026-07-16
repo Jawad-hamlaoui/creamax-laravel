@@ -22,6 +22,8 @@ class Calendrier extends Page
 
     protected static ?string $navigationLabel = 'Calendrier';
 
+    protected static ?int $navigationSort = 4;
+
     protected static ?string $title = 'Calendrier';
 
     protected string $view = 'filament.pages.calendrier';
