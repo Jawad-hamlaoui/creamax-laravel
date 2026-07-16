@@ -28,7 +28,7 @@ class DevisCreationTest extends TestCase
             ->fillForm([
                 'client_id' => $client->id,
                 'lignes' => [
-                    ['prestation_id' => $prestation->id, 'description' => $prestation->titre, 'quantite' => 2, 'prix_unitaire' => (string) $prestation->prix],
+                    ['prestation_id' => $prestation->id, 'description' => $prestation->titre, 'quantite' => 2, 'prix_unitaire' => 45],
                     ['description' => 'Ligne libre', 'quantite' => 1, 'prix_unitaire' => 50],
                 ],
             ])
@@ -41,7 +41,7 @@ class DevisCreationTest extends TestCase
         $this->assertMatchesRegularExpression('/^DEV-\d{4}-\d{3}$/', $devis->numero);
         $this->assertCount(2, $devis->lignes);
 
-        $expectedSousTotal = ((float) $prestation->prix * 2) + 50;
+        $expectedSousTotal = (45 * 2) + 50;
         $this->assertEqualsWithDelta($expectedSousTotal, (float) $devis->sous_total, 0.01);
         $this->assertEqualsWithDelta($expectedSousTotal * 1.20, (float) $devis->total, 0.01);
     }

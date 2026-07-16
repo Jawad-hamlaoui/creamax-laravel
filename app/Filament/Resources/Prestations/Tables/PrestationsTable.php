@@ -22,12 +22,6 @@ class PrestationsTable
                 TextColumn::make('categorie')
                     ->label('Catégorie')
                     ->badge(),
-                TextColumn::make('prix')
-                    ->label('Prix unitaire')
-                    ->money('EUR')
-                    ->sortable(),
-                TextColumn::make('unite')
-                    ->label('Unité'),
                 TextColumn::make('description')
                     ->label('Description')
                     ->limit(60)

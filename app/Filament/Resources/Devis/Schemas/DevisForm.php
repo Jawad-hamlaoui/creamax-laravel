@@ -81,8 +81,7 @@ class DevisForm
                                             return;
                                         }
 
-                                        $set('description', "{$presta->titre} (par {$presta->unite->getLabel()})");
-                                        $set('prix_unitaire', (string) $presta->prix);
+                                        $set('description', $presta->titre);
                                     })
                                     ->columnSpanFull(),
                                 TextInput::make('description')
