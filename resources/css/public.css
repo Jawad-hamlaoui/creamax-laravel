@@ -730,6 +730,60 @@ footer.site-footer {
 }
 
 /* ══════════════════════════════════════════
+   AVIS — BANDEAU DÉFILANT
+══════════════════════════════════════════ */
+.avis-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.avis-marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: avis-scroll 40s linear infinite;
+}
+.avis-marquee:hover .avis-marquee-track { animation-play-state: paused; }
+@keyframes avis-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.avis-card {
+  flex: 0 0 320px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.avis-card-stars { color: var(--accent); font-size: 16px; letter-spacing: 2px; }
+.avis-card-texte {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.85);
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.avis-card-auteur {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: auto; padding-top: 4px;
+  font-size: 13px; font-weight: 600; color: var(--blanc);
+}
+.avis-card-photo {
+  width: 32px; height: 32px; border-radius: 50%;
+  object-fit: cover; flex-shrink: 0;
+}
+.avis-card-photo-fallback {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent); color: var(--vert);
+  font-family: 'Playfair Display', serif; font-weight: 700;
+}
+
+/* ══════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════ */
 @media (max-width: 1024px) {

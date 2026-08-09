@@ -20,6 +20,11 @@ class AvisTable
                     ->label('Client')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('source')
+                    ->label('Origine')
+                    ->formatStateUsing(fn (string $state) => $state === 'google' ? 'Google' : 'Manuel')
+                    ->badge()
+                    ->color(fn (string $state) => $state === 'google' ? 'success' : 'gray'),
                 TextColumn::make('note')
                     ->label('Note')
                     ->formatStateUsing(fn (int $state) => str_repeat('★', $state)),

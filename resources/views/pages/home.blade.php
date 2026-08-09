@@ -5,6 +5,7 @@
 @php
     $settings = \App\Models\Setting::current();
     $realisations = \App\Models\Realisation::where('actif', true)->orderBy('ordre')->get();
+    $avisList = \App\Models\Avis::where('actif', true)->orderBy('ordre')->get();
 @endphp
 @include('partials.public.nav')
 
@@ -120,11 +121,28 @@
     <h2 class="section-title section-title-light reveal reveal-delay-1">Ce que <em>disent nos clients</em></h2>
     <p class="section-sub section-sub-light reveal reveal-delay-2" style="margin:16px auto 0;text-align:center;">Les avis Google de nos clients en Drôme et Ardèche.</p>
   </div>
-  <div class="reveal reveal-delay-3">
-    <!-- Elfsight Google Reviews | Untitled Google Reviews -->
-    <script src="https://elfsightcdn.com/platform.js" async></script>
-    <div class="elfsight-app-50777915-d61a-4257-9bf5-26a367f86030" data-elfsight-app-lazy></div>
-  </div>
+  @if ($avisList->isEmpty())
+    <p class="section-sub section-sub-light reveal reveal-delay-3" style="text-align:center;">Avis à venir.</p>
+  @else
+    <div class="avis-marquee reveal reveal-delay-3">
+      <div class="avis-marquee-track">
+        @foreach ($avisList->concat($avisList) as $avis)
+          <div class="avis-card">
+            <div class="avis-card-stars">{{ str_repeat('★', $avis->note) }}{{ str_repeat('☆', 5 - $avis->note) }}</div>
+            <p class="avis-card-texte">{{ $avis->texte }}</p>
+            <div class="avis-card-auteur">
+              @if ($avis->auteur_photo_url)
+                <img src="{{ $avis->auteur_photo_url }}" alt="{{ $avis->nom_client }}" class="avis-card-photo">
+              @else
+                <div class="avis-card-photo avis-card-photo-fallback">{{ mb_substr($avis->nom_client, 0, 1) }}</div>
+              @endif
+              <span>{{ $avis->nom_client }}</span>
+            </div>
+          </div>
+        @endforeach
+      </div>
+    </div>
+  @endif
 </section>
 
 <section id="services" class="section-creme">
