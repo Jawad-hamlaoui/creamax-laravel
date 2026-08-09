@@ -231,6 +231,10 @@
       </div>
     </div>
   @endif
+  <div style="text-align:center; margin-top:48px;">
+    <p class="section-sub reveal" style="margin:0 auto 20px;">Vous aussi, créez le jardin qui vous ressemble.</p>
+    <a href="#devis" class="btn-accent reveal">Demander un devis</a>
+  </div>
 </section>
 
 <section id="process" class="section-dark">
