@@ -130,14 +130,7 @@
           <div class="avis-card">
             <div class="avis-card-stars">{{ str_repeat('★', $avis->note) }}{{ str_repeat('☆', 5 - $avis->note) }}</div>
             <p class="avis-card-texte">{{ $avis->texte }}</p>
-            <div class="avis-card-auteur">
-              @if ($avis->auteur_photo_url)
-                <img src="{{ $avis->auteur_photo_url }}" alt="{{ $avis->nom_client }}" class="avis-card-photo">
-              @else
-                <div class="avis-card-photo avis-card-photo-fallback">{{ mb_substr($avis->nom_client, 0, 1) }}</div>
-              @endif
-              <span>{{ $avis->nom_client }}</span>
-            </div>
+            <div class="avis-card-auteur">{{ $avis->nom_client }}</div>
           </div>
         @endforeach
       </div>
