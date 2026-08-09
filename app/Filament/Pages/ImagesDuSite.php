@@ -36,6 +36,8 @@ class ImagesDuSite extends Page
             'apropos_image_2_path',
             'facebook_url',
             'instagram_url',
+            'telephone',
+            'email',
         ]));
     }
 
@@ -57,6 +59,14 @@ class ImagesDuSite extends Page
                 TextInput::make('instagram_url')
                     ->label('Lien Instagram')
                     ->url()
+                    ->maxLength(255),
+                TextInput::make('telephone')
+                    ->label('Téléphone')
+                    ->tel()
+                    ->maxLength(20),
+                TextInput::make('email')
+                    ->label('Email')
+                    ->email()
                     ->maxLength(255),
                 FileUpload::make('hero_image_path')
                     ->label('Photo de la section d\'accueil (Hero)')
