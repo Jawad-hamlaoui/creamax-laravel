@@ -740,6 +740,7 @@ footer.site-footer {
 .avis-marquee-track {
   display: flex;
   align-items: stretch;
+  gap: 20px;
   width: max-content;
   animation: avis-scroll 60s linear infinite;
 }
@@ -750,21 +751,22 @@ footer.site-footer {
 }
 .avis-card {
   flex: 0 0 340px;
-  padding: 4px 40px;
-  border-right: 1px solid var(--bord);
+  background: var(--vert);
+  border-radius: var(--radius-md);
+  padding: 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 18px;
 }
-.avis-card-stars { color: var(--accent-dark); font-size: 12px; letter-spacing: 3px; }
+.avis-card-stars { color: var(--accent); font-size: 12px; letter-spacing: 3px; }
 .avis-card-texte {
   font-family: 'Playfair Display', serif;
   font-style: italic;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.75;
-  color: var(--texte-doux);
+  color: rgba(255,255,255,0.85);
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
@@ -773,7 +775,7 @@ footer.site-footer {
 .avis-card-auteur {
   font-size: 11px; font-weight: 500;
   letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--texte-fin);
+  color: rgba(255,255,255,0.5);
 }
 
 /* ══════════════════════════════════════════
