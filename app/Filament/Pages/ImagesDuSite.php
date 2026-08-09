@@ -6,6 +6,7 @@ use App\Models\Setting;
 use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Schemas\Components\Actions;
@@ -29,9 +30,12 @@ class ImagesDuSite extends Page
     public function mount(): void
     {
         $this->form->fill(Setting::current()->only([
+            'logo_path',
             'hero_image_path',
             'apropos_image_1_path',
             'apropos_image_2_path',
+            'facebook_url',
+            'instagram_url',
         ]));
     }
 
@@ -39,6 +43,21 @@ class ImagesDuSite extends Page
     {
         return $schema
             ->components([
+                FileUpload::make('logo_path')
+                    ->label('Logo')
+                    ->helperText('Affiché dans le menu et le pied de page du site.')
+                    ->image()
+                    ->disk('public')
+                    ->directory('site')
+                    ->imageEditor(),
+                TextInput::make('facebook_url')
+                    ->label('Lien Facebook')
+                    ->url()
+                    ->maxLength(255),
+                TextInput::make('instagram_url')
+                    ->label('Lien Instagram')
+                    ->url()
+                    ->maxLength(255),
                 FileUpload::make('hero_image_path')
                     ->label('Photo de la section d\'accueil (Hero)')
                     ->helperText('Grande photo affichée à droite du titre principal, en haut du site.')

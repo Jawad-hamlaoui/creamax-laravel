@@ -673,6 +673,16 @@ footer.site-footer {
   gap: 48px; margin-bottom: 56px;
 }
 .footer-brand p { font-size: 14px; line-height: 1.75; margin-top: 16px; max-width: 260px; }
+.footer-social { display: flex; gap: 14px; margin-top: 18px; }
+.footer-social a {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.65);
+  transition: background 0.2s, color 0.2s;
+}
+.footer-social a:hover { background: var(--accent); color: var(--vert); }
+.footer-social svg { width: 16px; height: 16px; }
 .footer-col-title { font-size: 13px; font-weight: 600; color: var(--blanc); margin-bottom: 18px; }
 .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .footer-links a { font-size: 14px; color: rgba(255,255,255,0.55); transition: color 0.2s; }
