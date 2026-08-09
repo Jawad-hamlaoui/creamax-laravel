@@ -34,6 +34,7 @@ RUN composer dump-autoload --optimize \
     && chown -R www-data:www-data storage bootstrap/cache
 
 COPY docker/apache-vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 COPY docker/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
