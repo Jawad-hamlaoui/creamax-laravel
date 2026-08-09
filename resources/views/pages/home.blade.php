@@ -210,7 +210,7 @@
   </div>
 </section>
 
-<section id="avis" class="section-creme">
+<section id="avis">
   <div class="portfolio-header">
     <div class="reveal"><span class="eyebrow">Avis clients</span></div>
     <h2 class="section-title reveal reveal-delay-1">Ce que <em>disent nos clients</em></h2>
