@@ -4,6 +4,7 @@ namespace App\Filament\Resources\ContactMessages\Tables;
 
 use App\Enums\ContactMessageStatus;
 use App\Enums\RendezVousStatus;
+use App\Mail\RendezVousConfirmation;
 use App\Models\Client;
 use App\Models\ContactMessage;
 use Filament\Actions\Action;
@@ -12,10 +13,12 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Textarea;
+use Filament\Notifications\Notification;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Mail;
 
 class ContactMessagesTable
 {
@@ -79,7 +82,7 @@ class ContactMessagesTable
                             ],
                         );
 
-                        $record->rendezVous()->create([
+                        $rendezVous = $record->rendezVous()->create([
                             'client_id' => $client->id,
                             'date_heure' => $data['date_heure'],
                             'status' => RendezVousStatus::Valide,
@@ -89,6 +92,16 @@ class ContactMessagesTable
                             'status' => ContactMessageStatus::Traite,
                             'client_id' => $client->id,
                         ]);
+
+                        if ($client->email) {
+                            Mail::to($client->email)->send(new RendezVousConfirmation($rendezVous));
+                        }
+
+                        Notification::make()
+                            ->title('Rendez-vous confirmé')
+                            ->body($client->email ? 'Email de confirmation envoyé au client.' : 'Aucun email client, confirmation non envoyée.')
+                            ->success()
+                            ->send();
                     }),
                 EditAction::make()
                     ->label('Statut'),
