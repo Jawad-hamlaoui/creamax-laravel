@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreContactMessageRequest;
+use App\Mail\NewContactMessage;
 use App\Models\ContactMessage;
+use App\Models\Setting;
+use Illuminate\Support\Facades\Mail;
 
 class ContactMessageController extends Controller
 {
@@ -18,7 +21,11 @@ class ContactMessageController extends Controller
         $data['ip_address'] = $request->ip();
         $data['user_agent'] = substr((string) $request->userAgent(), 0, 255);
 
-        ContactMessage::create($data);
+        $contactMessage = ContactMessage::create($data);
+
+        if ($ownerEmail = Setting::current()->email) {
+            Mail::to($ownerEmail)->send(new NewContactMessage($contactMessage));
+        }
 
         return back()->with('contact_success', true);
     }
