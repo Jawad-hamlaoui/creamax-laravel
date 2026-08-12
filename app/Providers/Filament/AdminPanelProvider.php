@@ -31,6 +31,8 @@ class AdminPanelProvider extends PanelProvider
             ->brandName("Créa'Max Paysage")
             ->favicon(asset('favicon.svg'))
             ->login()
+            ->passwordReset()
+            ->profile()
             ->colors([
                 'primary' => Color::hex('#234625'),
                 'success' => Color::hex('#3a7a3c'),
