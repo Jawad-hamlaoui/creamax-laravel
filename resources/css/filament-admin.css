@@ -260,6 +260,11 @@
 /* ══════════════════════════════════════════════════════════
    CHAMPS DE FORMULAIRE
 ══════════════════════════════════════════════════════════ */
+.fi-fo-field-label-content,
+.fi-fo-field-wrp label {
+    color: var(--cm-texte) !important;
+}
+
 .fi-input-wrp {
     background-color: var(--cm-creme) !important;
     border-radius: 10px !important;
