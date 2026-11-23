@@ -21,3 +21,6 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+# Notes personnelles (identifiants) : ne jamais versionner
+creamax log*
