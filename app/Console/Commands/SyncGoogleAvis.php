@@ -2,8 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Avis;
-use App\Models\Setting;
 use App\Services\GooglePlacesService;
 use Illuminate\Console\Command;
 
@@ -15,29 +13,7 @@ class SyncGoogleAvis extends Command
 
     public function handle(GooglePlacesService $places): int
     {
-        $settings = Setting::current();
-
-        $placeId = $places->resolvePlaceId($settings);
-        $reviews = $places->fetchReviews($placeId);
-
-        $synced = 0;
-
-        foreach ($reviews as $review) {
-            Avis::updateOrCreate(
-                ['google_review_id' => $review['name']],
-                [
-                    'source' => 'google',
-                    'nom_client' => $review['authorAttribution']['displayName'] ?? 'Client Google',
-                    'auteur_photo_url' => $review['authorAttribution']['photoUri'] ?? null,
-                    'note' => $review['rating'] ?? 5,
-                    'texte' => $review['text']['text'] ?? '',
-                    'date_avis' => $review['publishTime'] ?? null,
-                    'actif' => true,
-                ]
-            );
-
-            $synced++;
-        }
+        $synced = $places->syncReviews();
 
         $this->info("{$synced} avis Google synchronisés.");
 

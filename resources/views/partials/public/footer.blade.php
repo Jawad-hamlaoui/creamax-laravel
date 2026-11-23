@@ -39,7 +39,7 @@
       <ul class="footer-links">
         <li><a href="{{ route('home') }}#services">Création de jardins</a></li>
         <li><a href="{{ route('home') }}#services">Aménagement extérieur</a></li>
-        <li><a href="{{ route('home') }}#services">Entretien & taille</a></li>
+        <li><a href="{{ route('home') }}#services">Entretien et taille</a></li>
         <li><a href="{{ route('home') }}#services">Arrosage automatique</a></li>
         <li><a href="{{ route('home') }}#services">Espaces pros</a></li>
       </ul>

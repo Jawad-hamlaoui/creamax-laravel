@@ -1,5 +1,5 @@
 <x-layouts.public
-    title="Créa'Max — Paysagiste Drôme & Ardèche | Création et entretien de jardin"
+    title="Créa'Max — Paysagiste Drôme et Ardèche | Création et entretien de jardin"
     description="Créa'Max Paysage, votre paysagiste en Drôme (26) et Ardèche (07). Création de jardins, aménagement paysager et entretien. Devis gratuit sous 72h, visite offerte."
 >
 @php
@@ -11,7 +11,7 @@
 
 <section id="hero">
   <div class="hero-left">
-    <div class="reveal hero-badge"><span></span>Drôme (26) & Ardèche (07)</div>
+    <div class="reveal hero-badge"><span></span>Drôme (26) et Ardèche (07)</div>
     <h1 class="hero-title reveal reveal-delay-1">
       Votre jardin,<br>
       notre <span class="accent-word">passion</span><br>
@@ -28,7 +28,7 @@
       <a href="#portfolio" class="btn-outline">Voir nos jardins</a>
     </div>
     <div class="hero-trust reveal reveal-delay-4">
-      <div class="trust-text">Drôme (26) &amp; Ardèche (07) — Devis gratuit · Visite offerte</div>
+      <div class="trust-text">Drôme (26) et Ardèche (07) — Devis gratuit · Visite offerte</div>
     </div>
   </div>
 
@@ -52,7 +52,7 @@
       </div>
       <div>
         <div class="float-num">0 €</div>
-        <div class="float-lbl">Visite & devis gratuits</div>
+        <div class="float-lbl">Visite et devis gratuits</div>
       </div>
     </div>
   </div>
@@ -138,13 +138,13 @@
     </div>
     <div class="service-card reveal reveal-delay-2">
       <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
-      <div class="service-name">Entretien & taille</div>
+      <div class="service-name">Entretien et taille</div>
       <p class="service-desc">Tonte, taille de haies, élagage, débroussaillage. Un jardin impeccable toute l'année.</p>
       <a href="#devis" class="service-link">En savoir plus <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
     <div class="service-card reveal reveal-delay-1">
       <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
-      <div class="service-name">Étude & conseil</div>
+      <div class="service-name">Étude et conseil</div>
       <p class="service-desc">Visite gratuite, plan paysager personnalisé et sélection des végétaux adaptés à votre sol et à votre région.</p>
       <a href="#devis" class="service-link">En savoir plus <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
@@ -156,7 +156,7 @@
     </div>
     <div class="service-card reveal reveal-delay-3">
       <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
-      <div class="service-name">Espaces pros & collectivités</div>
+      <div class="service-name">Espaces pros et collectivités</div>
       <p class="service-desc">Contrats d'entretien annuels pour syndics, entreprises et collectivités locales. Interlocuteur unique, intervention régulière.</p>
       <a href="#devis" class="service-link">En savoir plus <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
@@ -245,10 +245,10 @@
   </div>
   <div class="process-grid">
     @foreach ([
-        ['num' => 1, 'nom' => 'Visite & écoute', 'desc' => 'On se déplace chez vous gratuitement pour comprendre vos envies, votre budget et les contraintes de votre terrain.'],
-        ['num' => 2, 'nom' => 'Plan & devis', 'desc' => 'Nous vous remettons un plan paysager détaillé et un devis transparent sous 72h. Aucune surprise.'],
+        ['num' => 1, 'nom' => 'Visite et écoute', 'desc' => 'On se déplace chez vous gratuitement pour comprendre vos envies, votre budget et les contraintes de votre terrain.'],
+        ['num' => 2, 'nom' => 'Plan et devis', 'desc' => 'Nous vous remettons un plan paysager détaillé et un devis transparent sous 72h. Aucune surprise.'],
         ['num' => 3, 'nom' => 'Réalisation', 'desc' => 'Nos équipes interviennent avec soin. Vous êtes informé à chaque étape clé du chantier.'],
-        ['num' => 4, 'nom' => 'Livraison & suivi', 'desc' => 'Visite finale avec vous, conseils d\'entretien personnalisés. On reste disponibles après la livraison.'],
+        ['num' => 4, 'nom' => 'Livraison et suivi', 'desc' => 'Visite finale avec vous, conseils d\'entretien personnalisés. On reste disponibles après la livraison.'],
     ] as $i => $step)
       <div class="process-step reveal reveal-delay-{{ $i }}">
         <div class="process-num">{{ $step['num'] }}</div>
@@ -286,7 +286,7 @@
       <svg class="zone-map-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="rgba(197,216,109,0.6)" stroke-width="1.5">
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
       </svg>
-      <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:8px;">Drôme & Ardèche</div>
+      <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--accent);margin-bottom:8px;">Drôme et Ardèche</div>
       <div style="font-size:13px;color:rgba(255,255,255,0.6);">Couverture complète des 2 départements</div>
       <div class="zone-chiffres">
         <div class="zone-chiffre"><span class="zone-chiffre-num">2</span><div class="zone-chiffre-lbl">Départements</div></div>

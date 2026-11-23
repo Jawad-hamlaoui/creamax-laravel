@@ -33,6 +33,7 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->passwordReset()
             ->profile()
+            ->darkMode(false)
             ->colors([
                 'primary' => Color::hex('#234625'),
                 'success' => Color::hex('#3a7a3c'),

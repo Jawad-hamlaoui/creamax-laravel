@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Avis;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Http;
 use RuntimeException;
@@ -77,5 +78,39 @@ class GooglePlacesService
         $response->throw();
 
         return $response->json('reviews', []);
+    }
+
+    /**
+     * Récupère les derniers avis Google de l'établissement configuré dans
+     * Setting et les importe/actualise dans la table `avis`. Retourne le
+     * nombre d'avis synchronisés.
+     */
+    public function syncReviews(): int
+    {
+        $settings = Setting::current();
+
+        $placeId = $this->resolvePlaceId($settings);
+        $reviews = $this->fetchReviews($placeId);
+
+        $synced = 0;
+
+        foreach ($reviews as $review) {
+            Avis::updateOrCreate(
+                ['google_review_id' => $review['name']],
+                [
+                    'source' => 'google',
+                    'nom_client' => $review['authorAttribution']['displayName'] ?? 'Client Google',
+                    'auteur_photo_url' => $review['authorAttribution']['photoUri'] ?? null,
+                    'note' => $review['rating'] ?? 5,
+                    'texte' => $review['text']['text'] ?? '',
+                    'date_avis' => $review['publishTime'] ?? null,
+                    'actif' => true,
+                ]
+            );
+
+            $synced++;
+        }
+
+        return $synced;
     }
 }

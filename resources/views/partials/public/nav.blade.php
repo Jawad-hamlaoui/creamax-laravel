@@ -10,10 +10,19 @@
     </div>
     <div>
       <span class="logo-name">Créa'Max</span>
-      <span class="logo-sub">Paysagiste · 26 & 07</span>
+      <span class="logo-sub">Paysagiste · 26 et 07</span>
     </div>
   </a>
   <ul class="nav-links">
+    <li><a href="{{ route('home') }}#apropos">À propos</a></li>
+    <li><a href="{{ route('home') }}#services">Services</a></li>
+    <li><a href="{{ route('home') }}#portfolio">Réalisations</a></li>
+    <li><a href="{{ route('home') }}#devis" class="btn-nav">Devis gratuit</a></li>
+  </ul>
+  <button type="button" id="nav-toggle" class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links-mobile" id="mobile-nav-links">
     <li><a href="{{ route('home') }}#apropos">À propos</a></li>
     <li><a href="{{ route('home') }}#services">Services</a></li>
     <li><a href="{{ route('home') }}#portfolio">Réalisations</a></li>

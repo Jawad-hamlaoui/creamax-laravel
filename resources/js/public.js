@@ -5,6 +5,28 @@ if (navbar) {
     });
 }
 
+const navToggle = document.getElementById('nav-toggle');
+const mobileNavLinks = document.getElementById('mobile-nav-links');
+if (navToggle && navbar && mobileNavLinks) {
+    const closeMobileNav = () => {
+        navbar.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+    };
+
+    navToggle.addEventListener('click', () => {
+        const isOpen = navbar.classList.toggle('nav-open');
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    mobileNavLinks.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMobileNav);
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!navbar.contains(event.target)) closeMobileNav();
+    });
+}
+
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {

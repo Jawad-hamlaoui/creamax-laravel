@@ -41,4 +41,15 @@ php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 
+# Le conteneur ne fait tourner qu'Apache en foreground : sans ce mécanisme,
+# aucun cron externe n'appelle jamais `schedule:run`, donc les tâches
+# planifiées dans routes/console.php (sync des avis Google, sitemap...) ne
+# se déclenchent jamais. On simule le "* * * * *" d'un vrai cron ici.
+(
+    while true; do
+        php artisan schedule:run >> storage/logs/scheduler.log 2>&1
+        sleep 60
+    done
+) &
+
 exec "$@"
