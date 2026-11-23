@@ -72,13 +72,13 @@ nav#navbar.scrolled { box-shadow: 0 4px 24px rgba(35,70,37,0.07); }
   display: flex; align-items: center; gap: 10px;
 }
 .logo-mark {
-  width: 40px; height: 40px;
-  background: var(--vert);
-  border-radius: 50%;
+  width: 60px; height: 60px;
+  background: none;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.logo-mark svg { width: 22px; height: 22px; fill: var(--accent); }
+.logo-mark img { border-radius: 0 !important; }
+.logo-mark svg { width: 44px; height: 44px; fill: var(--vert); }
 .logo-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--vert); }
 .logo-sub { font-size: 10px; font-weight: 500; color: var(--texte-fin); letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-top: -3px; }
 .nav-links {
